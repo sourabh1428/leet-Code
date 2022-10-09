@@ -12,9 +12,13 @@ class Solution {
         int m=0, n=0;
         int max = s.length();
         
+    //map me choti string daldo    
+    
         for(int k = 0; k < t.length(); k++) {
             pattMap.put(t.charAt(k), pattMap.getOrDefault(t.charAt(k), 0)+1);
         }
+        
+        //overall count lelo map k size ka
         
         int count = pattMap.size();
         
