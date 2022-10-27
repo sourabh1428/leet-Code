@@ -128,36 +128,51 @@ class Solution
 {
     //Function to return a list of nodes visible from the top view 
     //from left to right in Binary Tree.
-    static ArrayList<Integer> topView(Node root)
-    {
-        // add your code
-        ArrayList<Integer> lis=new ArrayList<>();
-        Map<Integer,Integer> map=new TreeMap<>();
-        Queue<pair> q=new ArrayDeque<>();
-        q.add(new pair(0,root));
-        while (!q.isEmpty()){
-            pair curr=q.poll();
-            if (!map.containsKey(curr.hd)){
-                map.put(curr.hd, curr.node.data);
-            }
-            if(curr.node.left!=null){
-                q.add(new pair(curr.hd-1, curr.node.left));
-            }
-            if(curr.node.right!=null){
-                q.add(new pair(curr.hd+1, curr.node.right));
-            }
-        }
-        for (int i:map.values()){
-            lis.add(i);
-        }
-        return lis;
-    }
-    static class pair{
+    
+    
+    static class Pair{
         int hd;
         Node node;
-        public pair(int hd, Node node){
+        
+        public Pair(int hd, Node node){
             this.hd=hd;
-            this.node =node;
+            this.node=node;
         }
+        
+    }
+    
+    
+    static ArrayList<Integer> topView(Node root)
+    {
+        ArrayList<Integer>arr=new ArrayList<>();
+        Map<Integer,Integer>map=new TreeMap<>();
+        Queue<Pair>queue=new ArrayDeque<>();
+        
+        queue.add(new Pair(0,root));
+        
+        while(!queue.isEmpty()){
+            Pair curr=queue.poll();
+            
+            if(!map.containsKey(curr.hd)){
+                map.put(curr.hd,curr.node.data);
+            }
+            if(curr.node.left!=null){
+                queue.add(new Pair(curr.hd-1,curr.node.left));
+            }
+            if(curr.node.right!=null){
+                queue.add(new Pair(curr.hd+1,curr.node.right));
+            }
+            
+        }
+        
+        //ab poora data map k key me jachuka hai arrylist me copy krlo
+        
+        for(int i:map.values())
+        {
+            arr.add(i);
+        }
+        
+        
+        return arr;
     }
 }
