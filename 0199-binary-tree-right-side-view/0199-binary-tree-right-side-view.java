@@ -35,7 +35,5 @@ class Solution {
         righthelp(root.left,level+1);
         
     }
-    
-    
-    
+ 
 }
