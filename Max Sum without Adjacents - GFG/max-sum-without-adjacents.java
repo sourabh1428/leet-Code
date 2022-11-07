@@ -32,26 +32,27 @@ public class Main {
 
 class Solution {
     int findMaxSum(int arr[], int n) {
-        int[] dp=new int[n];
-        Arrays.fill(dp,-1);
-        dp[0]=arr[0];
         
-        
+        int prev=arr[0];
+        int prev2=0;
         
         for(int i=1;i<n;i++){
             
             //take
             
-            
+            int curri=i;
             int take=arr[i];
-            if(i>1){take+=dp[i-2];}
-            int nontake=0+dp[i-1];
+            if(i>1){take+=prev2;}
+            int nontake=0+prev;
+           
             
-            dp[i]=Math.max(take,nontake);
+            curri=Math.max(take,nontake);
+             prev2=prev;
+            prev=curri;
             
         }
         
+        return prev;
         
-        return dp[n-1];
     }
 }
