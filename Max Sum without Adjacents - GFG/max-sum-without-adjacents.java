@@ -37,22 +37,25 @@ class Solution {
         int prev2=0;
         
         for(int i=1;i<n;i++){
-            
-            //take
-            
             int curri=i;
+            //take
             int take=arr[i];
-            if(i>1){take+=prev2;}
+            
+            if(n>1){
+            take+=prev2;}
+            
+            
+            //nontake
             int nontake=0+prev;
-           
             
             curri=Math.max(take,nontake);
-             prev2=prev;
+            prev2=prev;
             prev=curri;
-            
         }
         
         return prev;
-        
+       
     }
+    
+    
 }
