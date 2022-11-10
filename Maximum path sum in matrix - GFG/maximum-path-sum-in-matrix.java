@@ -36,16 +36,30 @@ class Solution{
        int maxi=Integer.MIN_VALUE;
        int dp[][]=new int[n][m];
        
-       for(int values[]:dp){
-           Arrays.fill(values,-1);
-       }
-       
-       
-       
        for(int j=0;j<m;j++){
-           maxi=Math.max(solve(n-1,j,Matrix,dp),maxi);
+           dp[0][j]=Matrix[0][j];
        }
-       return maxi;
+       
+       for(int i=1;i<n;i++){
+           
+           for(int j=0;j<m;j++){
+               
+               int up=Matrix[i][j]+dp[i-1][j];
+               int left=Integer.MIN_VALUE;int right=Integer.MIN_VALUE;
+               if(j>0)left=Matrix[i][j]+dp[i-1][j-1];
+                if(j+1<Matrix[0].length)right=Matrix[i][j]+dp[i-1][j+1];
+                
+                dp[i][j]=Math.max(up,Math.max(left,right));
+        
+           }
+           
+       }
+       int curmax=Integer.MIN_VALUE;
+       for(int j=0;j<m;j++){
+           curmax=Math.max(curmax,dp[n-1][j]);
+       }
+      
+       return curmax;
     }
     
     static int solve(int i,int j,int[][]arr,int[][] dp){
