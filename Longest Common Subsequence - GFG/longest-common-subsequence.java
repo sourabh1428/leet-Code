@@ -29,40 +29,26 @@ class Solution
     //Function to find the length of longest common subsequence in two strings.
     static int lcs(int x, int y, String s1, String s2)
     {
-        int [][]dp=new int[x+1][y+1];
+        int dp[][]=new int[x+1][y+1];
         
-        for(int i=0;i<=y;i++){dp[0][i]=0;}
-         for(int i=0;i<=x;i++){dp[i][0]=0;}
-         
-         for(int i=1;i<=x;i++){
-             for(int j=1;j<=y;j++){
-                if(s1.charAt(i-1)==s2.charAt(j-1)){dp[i][j]=1+dp[i-1][j-1];}
-                else{
-                    dp[i][j]=Math.max(dp[i-1][j],dp[i][j-1]); 
-                    }                 
-                  }
-              }
-         return dp[x][y];
-         
-         
-         
-         
-        
-    //   return solve(x,y,s1,s2,dp);
-    }
-    static int solve(int x,int y,String s1,String s2,int[][]dp){
-        //base case
-        if(x==0 || y==0)return 0;
-        
-        if(dp[x][y]!=-1)return dp[x][y];
-        
-        //matching
-        if(s1.charAt(x-1)==s2.charAt(y-1)){
-            return dp[x][y]=1+solve(x-1,y-1,s1,s2,dp);
+        for(int val[]:dp){
+            Arrays.fill(val,-1);
         }
-        return dp[x][y]=Math.max(solve(x-1,y,s1,s2,dp),solve(x,y-1,s1,s2,dp));
         
         
+        
+        
+        return solve(x,y,s1,s2,dp);
+    }
+    static int solve(int i,int j, String s1,String s2,int[][]dp){
+        
+        if(i==0 || j==0)return 0;
+        if(dp[i][j]!=-1)return dp[i][j];
+        
+        if(s1.charAt(i-1)==s2.charAt(j-1)){
+            return dp[i][j]=1+solve(i-1,j-1,s1,s2,dp);
+        }
+        return dp[i][j]=Math.max(solve(i-1,j,s1,s2,dp),solve(i,j-1,s1,s2,dp));
         
     }
     
