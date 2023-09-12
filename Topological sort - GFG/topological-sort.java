@@ -65,21 +65,54 @@ class Solution
     {
         // add your code here
         int n=adj.size();
-        int[] vis=new int[n];
-        Stack<Integer>set=new Stack<Integer>();
-        for(int i=0;i<n;i++){
-            if(vis[i]!=1){
-                dfs(i,vis,adj,set);
+        // int[] vis=new int[n];
+        // Stack<Integer>set=new Stack<Integer>();
+        // for(int i=0;i<n;i++){
+        //     if(vis[i]!=1){
+        //         dfs(i,vis,adj,set);
+        //     }
+        // }
+        // int[] ans=new int[n];
+        
+        // int i=0;
+        // while(!set.isEmpty()){
+        //     ans[i++]=set.pop();
+        
+        // }
+        // return ans;
+        int[] indegree=new int[V];
+        
+        for(int i=0;i<V;i++){
+            for(Integer it:adj.get(i)){
+                indegree[it]++;
             }
         }
-        int[] ans=new int[n];
-        
+        Queue<Integer>q=new LinkedList<>();
+        for(int i=0;i<V;i++){
+            
+            if(indegree[i]==0){
+                q.add(i);
+            }
+        }
+        int[] ans=new int[V];
         int i=0;
-        while(!set.isEmpty()){
-            ans[i++]=set.pop();
         
+        
+        while(!q.isEmpty()){
+            int node=q.peek();
+            ans[i]=node;
+            i++;
+            q.remove();
+            for(Integer it:adj.get(node)){
+                indegree[it]--;
+                if(indegree[it]==0){
+                    q.add(it);
+                }
+                
+            }    
         }
         return ans;
+        
     }
     static void dfs(int ind,int[] vis,ArrayList<ArrayList<Integer>>arr,Stack<Integer>st){
         vis[ind]=1;
