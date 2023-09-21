@@ -60,10 +60,10 @@ class Solution
             
             while(low<high){
                 
-                while(arr[low]<=pivot && low<=h-1){
+                while(arr[low]<=pivot && low<h){
                     low++;
                 }
-                while(arr[high]>pivot && high>=l+1){
+                while(arr[high]>pivot && high>l){
                     high--;
                 }
             //swap
