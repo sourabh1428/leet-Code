@@ -60,17 +60,26 @@ class Solution
     {
          // Your code here.
          if(head==null)return 0;
-         int i=0;
-         Node dummy=head;
-         while(dummy!=null){
-             i++;
-             dummy=dummy.next;
-         }
-         i=i/2;
-         Node p=head;
-         while(i-->0){
-             p=p.next;
-         }
-         return p.data;
+        //  int i=0;
+        //  Node dummy=head;
+        //  while(dummy!=null){
+        //      i++;
+        //      dummy=dummy.next;
+        //  }
+        //  i=i/2;
+        //  Node p=head;
+        //  while(i-->0){
+        //      p=p.next;
+        //  }
+        //  return p.data;
+        Node slow=head;
+        Node fast=head;
+        
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        
+        return slow.data;
     }
 }
