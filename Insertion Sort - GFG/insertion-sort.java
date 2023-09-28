@@ -47,17 +47,18 @@ class Solution
   {
       //code here
       
-      for(int i=1;i<n;i++){
-          int key=arr[i];
-          int k=i;
-          
-          while(k>0 && arr[k]<arr[k-1]){
-            int x=arr[k];
-            arr[k]=arr[k-1];
-            arr[k-1]=x;
-            k--;
-          }
       
+      for(int i=0;i<n-1;i++){
+        
+        for(int j=0;j<n-i-1;j++){
+            
+            if(arr[j]>arr[j+1]){
+                int x=arr[j];
+                arr[j]=arr[j+1];
+                arr[j+1]=x;
+            }
+            
+        }    
           
       }
       
