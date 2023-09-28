@@ -46,17 +46,20 @@ class Solution
   public void insertionSort(int arr[], int n)
   {
       //code here
-     for(int i=1;i<n;i++){
-         
-         int key=arr[i];
-         int k=i-1;
-         while(k>=0 && key<arr[k]){
-             arr[k+1]=arr[k];
-             k--;
-         }
-         arr[k+1]=key;
-     }
       
+      for(int i=1;i<n;i++){
+          int key=arr[i];
+          int k=i;
+          
+          while(k>0 && arr[k]<arr[k-1]){
+            int x=arr[k];
+            arr[k]=arr[k-1];
+            arr[k-1]=x;
+            k--;
+          }
+      
+          
+      }
       
   }
 }
