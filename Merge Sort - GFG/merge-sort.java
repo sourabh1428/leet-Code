@@ -57,51 +57,38 @@ class Merge_Sort
 
 class Solution
 {
-    void merge(int arr[], int l, int mid, int r)
+    void merge(int arr[], int l, int m, int r)
     {
          // Your code here
-         int n1=mid-l+1;
-         int n2=r-mid;
+         int n1=m-l+1;
+         int n2=r-m;
+         int[] a=new int[n1];int []b=new int[n2];
+         for(int i=0;i<n1;i++){a[i]=arr[i+l];}
+         for(int i=0;i<n2;i++){b[i]=arr[m+i+1];}
          
-         
-         int[]L=new int[n1];
-         int[]R=new int[n2];
-         
-         for(int i=0;i<n1;i++){
-             L[i]=arr[l+i];
-         }
-         for(int i=0;i<n2;i++){
-             R[i]=arr[mid+1+i];
-         }
-         
-         int i=0,j=0;
+         int i=0;
+         int j=0;
          int k=l;
          
          while(i<n1 && j<n2){
-             
-             if(L[i]<=R[j]){
-                 arr[k]=L[i];
+             if(a[i]<=b[j]){
+                 arr[k]=a[i];
                  i++;
-             }else
-             {
-                 arr[k]=R[j];
+             }
+             else{
+                 arr[k]=b[j];
                  j++;
              }
              k++;
          }
-         
          while(i<n1){
-             arr[k]=L[i];
-             i++;
-             k++;
+             arr[k]=a[i];
+             k++;i++;
          }
          while(j<n2){
-             arr[k]=R[j];
-             j++;
-                k++;
-             
+             arr[k]=b[j];
+             k++;j++;
          }
-         
          
     }
     void mergeSort(int arr[], int l, int r)
@@ -110,15 +97,11 @@ class Solution
         
         if(l<r){
             int mid=l+(r-l)/2;
+        mergeSort(arr,l,mid);
+        mergeSort(arr,mid+1,r);
+        merge(arr,l,mid,r);
             
-            mergeSort(arr,l,mid);
             
-            mergeSort(arr,mid+1,r);
-            
-            
-            merge(arr,l,mid,r);
         }
-        
-        
     }
 }
