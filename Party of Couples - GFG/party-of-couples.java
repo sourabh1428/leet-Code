@@ -33,13 +33,13 @@ class Solution{
         // code here
         //n2//
         //1-n//1-n//if(i==n)return false
-        Arrays.sort(arr);
-        for(int i=0;i<N-2;i+=2){
-            if(arr[i]!=arr[i+1]){
-                return arr[i];
-            }
+        Map<Integer,Integer>map=new HashMap<>();
+        for(int i:arr){
+            map.put(i,map.getOrDefault(i,0)+1);
         }
-        return arr[N-1];
-        
+        for(int i:arr){
+            if(map.get(i)==1)return i;
+        }
+        return -1;
     }
 }
