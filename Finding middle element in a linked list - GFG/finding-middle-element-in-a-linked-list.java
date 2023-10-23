@@ -59,21 +59,15 @@ class Solution
     int getMiddle(Node head)
     {
          // Your code here.
-         if(head==null)return -1;
-         Node dummy=head;
-         int len=0;
-         while(dummy!=null){
-             len++;
-             dummy=dummy.next;
-             
-         }
-         dummy=head;
-         len=len/2;
-         while(len>0){
-             dummy=dummy.next;
-             len--;
-         }
-         
-         return dummy.data;
+            Node slow=head;
+            Node fast=head;
+            
+            
+            while(fast!=null && fast.next!=null){
+                fast=fast.next.next;
+                slow=slow.next;
+                
+            }
+            return slow.data;
     }
 }
