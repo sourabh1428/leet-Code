@@ -35,9 +35,10 @@ public class Main {
 class Solution {
     int findMaximum(int[] arr, int n) {
         // code here
-        for(int i=1;i<n;i++){
-            if(arr[i]<arr[i-1])return arr[i-1];
+        int maxi=Integer.MIN_VALUE;
+        for(int i=0;i<n;i++){
+            maxi=Math.max(arr[i],maxi);
         }
-        return arr[n-1];
+        return maxi;
     }
 }
